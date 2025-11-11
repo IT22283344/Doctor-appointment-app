@@ -99,7 +99,7 @@ export default function Invoice() {
       </Text>
       <Text className="mb-2">Slot: {appointment.slot}</Text>
       <Text className="mb-2">Consultation Fee: {appointment.fee}</Text>
-
+      <Text className="mb-2"> Date: {new Date(appointment.patient.appointmentDate).toLocaleDateString()}</Text>
       <Pressable onPress={generatePdf} className="bg-blue-600 p-3 rounded mt-6">
         <Text className="text-white text-center">Generate PDF</Text>
       </Pressable>

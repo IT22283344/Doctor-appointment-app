@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Pressable, TextInput, Alert, ActivityIndicator } from 'react-native'
+import { View, Text, Pressable, TextInput, Alert, ActivityIndicator, Platform, Modal, TouchableOpacity, ScrollView } from 'react-native'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import doctorsData from '../data/doctors.json'
 import * as SecureStore from 'expo-secure-store'
+import DateTimePicker from '@react-native-community/datetimepicker'
 
 // Types
 interface DoctorSlot {
@@ -18,13 +19,8 @@ interface Doctor {
   experience: string;
   rating: number;
   about: string;
-  slots: {
-    [key: string]: DoctorSlot;
-  };
+  slots: { [key: string]: DoctorSlot };
 }
-
-// Type assertion for doctorsData
-//const typedDoctorsData = doctorsData as Doctor[];
 
 interface Patient {
   name: string;
@@ -59,6 +55,8 @@ export default function Booking() {
   const [age, setAge] = useState('')
   const [contact, setContact] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [appointmentDate, setAppointmentDate] = useState(new Date())
+  const [showDatePicker, setShowDatePicker] = useState(false)
 
   useEffect(() => {
     const foundDoctor = doctorsData.find((x: any) => x.id === id);
@@ -67,8 +65,7 @@ export default function Booking() {
       router.back();
       return;
     }
-    
-    // Convert the raw data to match our type
+
     const formattedDoctor: DoctorData = {
       id: foundDoctor.id,
       name: foundDoctor.name,
@@ -85,9 +82,19 @@ export default function Booking() {
         return acc;
       }, {} as { [key: string]: SlotInfo })
     };
-    
+
     setDoctor(formattedDoctor);
   }, [id, router]);
+
+  const handleDateChange = (event: any, selectedDate?: Date) => {
+    // Always close the picker first
+    setShowDatePicker(false);
+    
+    if (event.type === 'set' && selectedDate) {
+      setAppointmentDate(selectedDate);
+    }
+    // If event.type is 'dismissed' or 'canceled', do nothing (picker closed without selection)
+  };
 
   const confirmBooking = async () => {
     try {
@@ -103,20 +110,12 @@ export default function Booking() {
         return;
       }
 
-      // Validate inputs
-      if (!name.trim() || !age.trim() || !contact.trim()) {
-        Alert.alert('Invalid Input', 'Please fill all fields with valid information');
-        return;
-      }
-
-      // Validate age
       const ageNum = parseInt(age, 10);
       if (isNaN(ageNum) || ageNum <= 0 || ageNum > 120) {
         Alert.alert('Invalid Age', 'Please enter a valid age');
         return;
       }
 
-      // Check if slot is still available
       const slotInfo = doctor.slots[selectedSlot as keyof typeof doctor.slots];
       if (!slotInfo || slotInfo.available === 0) {
         Alert.alert('Slot Full', 'This time slot is no longer available');
@@ -125,7 +124,7 @@ export default function Booking() {
 
       const timestamp = Date.now()
       const bookingNumber = `BK${timestamp.toString().slice(-6)}`
-      
+
       const appointment = {
         id: `appt_${timestamp}`,
         bookingNumber,
@@ -133,19 +132,18 @@ export default function Booking() {
         doctorName: doctor.name,
         specialization: doctor.specialization,
         slot: selectedSlot,
-        patient: { name, age, contact },
+        date: appointmentDate.toISOString().split('T')[0],
+        patient: { name, age, contact, appointmentDate },
         fee: doctor.fee || CONSULTATION_FEE,
         status: 'upcoming',
         createdAt: new Date().toISOString()
       }
 
-      // Update appointments
       const raw = await SecureStore.getItemAsync('appointments')
       const list = raw ? JSON.parse(raw) : []
       list.push(appointment)
       await SecureStore.setItemAsync('appointments', JSON.stringify(list))
 
-      // Update doctor's slot availability
       const updatedDoctors = doctorsData.map((d: any) => {
         if (d.id === doctor.id && selectedSlot && d.slots[selectedSlot]) {
           const currentSlot = d.slots[selectedSlot];
@@ -153,7 +151,6 @@ export default function Booking() {
             ...currentSlot,
             available: Math.max(0, currentSlot.available - 1)
           };
-          
           return {
             ...d,
             slots: {
@@ -165,11 +162,10 @@ export default function Booking() {
         return d;
       });
 
-      // Save updated doctor data
       await SecureStore.setItemAsync('doctorsData', JSON.stringify(updatedDoctors))
       Alert.alert('Success', `Appointment booked\nBooking #: ${bookingNumber}`)
       router.replace(`/invoice?id=${appointment.id}`)
-    } catch(err) {
+    } catch (err) {
       console.error(err);
       Alert.alert('Error', 'Unable to save appointment');
     } finally {
@@ -184,49 +180,164 @@ export default function Booking() {
         <Text className="mt-2">Loading doctor information...</Text>
       </View>
     );
-  }  return (
-    <View className="flex-1 px-4 pt-6">
-      <Text className="text-2xl font-bold mb-2">Book with {doctor.name}</Text>
-      <Text className="text-sm text-gray-600 mb-4">{doctor.specialization}</Text>
+  }
 
-      <Text className="mb-2 font-semibold">Available Slots</Text>
-      <View className="flex-row flex-wrap mb-4">
-        {Object.entries(doctor.slots).map(([time, info]: [string, any]) => (
-          <Pressable
-            key={time}
-            onPress={() => setSelectedSlot(time)}
-            disabled={info.available === 0}
-            className={`px-3 py-2 mr-2 mb-2 rounded ${
-              selectedSlot === time
-                ? 'bg-blue-600'
-                : info.available === 0
-                ? 'bg-gray-300'
-                : 'bg-gray-200'
-            }`}
-          >
-            <Text className={`${selectedSlot === time ? 'text-white' : ''}`}>
-              {time} ({info.available}/{info.capacity})
-            </Text>
-          </Pressable>
-        ))}
-      </View>
+  return (
+    <ScrollView className="flex-1 bg-white">
+      <View className="flex-1 px-4 pt-6 pb-8">
+        <Text className="text-2xl font-bold mb-2">Book with {doctor.name}</Text>
+        <Text className="text-sm text-gray-600 mb-6">{doctor.specialization}</Text>
 
-      <TextInput placeholder="Patient name"  placeholderTextColor="#888" className="border p-3 mb-3 rounded  text-black" value={name} onChangeText={setName} />
-      <TextInput placeholder="Age"  placeholderTextColor="#888" className="border p-3 mb-3 rounded" value={age} onChangeText={setAge} keyboardType="numeric" />
-      <TextInput placeholder="Contact number"  placeholderTextColor="#888" className="border p-3 mb-3 rounded" value={contact} onChangeText={setContact} keyboardType="phone-pad" />
-
-      <Pressable 
-        onPress={confirmBooking} 
-        className={`bg-green-600 p-3 rounded ${isLoading ? 'opacity-50' : ''}`}
-        disabled={isLoading}
-      >
-        <View className="flex-row justify-center items-center">
-          {isLoading && <ActivityIndicator color="white" className="mr-2" />}
-          <Text className="text-white text-center">
-            {isLoading ? 'Booking...' : 'Confirm Booking'}
-          </Text>
+        {/* Available Slots */}
+        <Text className="text-lg font-semibold mb-3">Available Slots</Text>
+        <View className="flex-row flex-wrap mb-6">
+          {Object.entries(doctor.slots).map(([time, info]: [string, any]) => (
+            <Pressable
+              key={time}
+              onPress={() => setSelectedSlot(time)}
+              disabled={info.available === 0}
+              className={`px-4 py-3 mr-3 mb-3 rounded-lg border ${
+                selectedSlot === time
+                  ? 'bg-blue-600 border-blue-600'
+                  : info.available === 0
+                  ? 'bg-gray-100 border-gray-300'
+                  : 'bg-white border-gray-300'
+              }`}
+            >
+              <Text className={`font-medium ${
+                selectedSlot === time
+                  ? 'text-white'
+                  : info.available === 0
+                  ? 'text-gray-400'
+                  : 'text-gray-800'
+              }`}>
+                {time}
+              </Text>
+              <Text className={`text-sm ${
+                selectedSlot === time
+                  ? 'text-blue-200'
+                  : info.available === 0
+                  ? 'text-gray-400'
+                  : 'text-gray-500'
+              }`}>
+                {info.available}/{info.capacity} available
+              </Text>
+            </Pressable>
+          ))}
         </View>
-      </Pressable>
-    </View>
+
+        {/* Patient Information */}
+        <Text className="text-lg font-semibold mb-4">Patient Information</Text>
+        
+        <TextInput
+          placeholder="Full Name"
+          placeholderTextColor="#666"
+          className="border border-gray-300 p-4 mb-4 rounded-lg text-black bg-white"
+          value={name}
+          onChangeText={setName}
+        />
+
+        <TextInput
+          placeholder="Age"
+          placeholderTextColor="#666"
+          className="border border-gray-300 p-4 mb-4 rounded-lg text-black bg-white"
+          value={age}
+          onChangeText={setAge}
+          keyboardType="numeric"
+        />
+
+        <TextInput
+          placeholder="Contact Number"
+          placeholderTextColor="#666"
+          className="border border-gray-300 p-4 mb-6 rounded-lg text-black bg-white"
+          value={contact}
+          onChangeText={setContact}
+          keyboardType="phone-pad"
+        />
+
+        {/* Date Picker Section */}
+        <Text className="text-lg font-semibold mb-3">Appointment Date</Text>
+        
+        <Pressable
+          onPress={() => setShowDatePicker(true)}
+          className="border border-gray-300 p-4 mb-6 rounded-lg bg-white"
+        >
+          <Text className="text-black text-base">
+             {appointmentDate.toLocaleDateString('en-US', { 
+              weekday: 'long', 
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric' 
+            })}
+          </Text>
+          <Text className="text-gray-500 text-sm mt-1">Tap to change date</Text>
+        </Pressable>
+
+        {/* Date Picker */}
+        {showDatePicker && (
+          <DateTimePicker
+            value={appointmentDate}
+            mode="date"
+            display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
+            onChange={handleDateChange}
+            minimumDate={new Date()}
+            style={
+              Platform.OS === 'ios' 
+                ? { height: 200, backgroundColor: 'white' } 
+                : {}
+            }
+            textColor="#000000"
+            accentColor="#2563eb"
+          />
+        )}
+
+        {/* Booking Summary */}
+        <View className="bg-gray-50 p-4 rounded-lg mb-6">
+          <Text className="text-lg font-semibold mb-3">Booking Summary</Text>
+          <View className="flex-row justify-between mb-2">
+            <Text className="text-gray-600">Doctor Fee</Text>
+            <Text className="text-gray-800">Rs.{doctor.fee}</Text>
+          </View>
+          <View className="flex-row justify-between mb-2">
+            <Text className="text-gray-600">Date</Text>
+            <Text className="text-gray-800">{appointmentDate.toLocaleDateString()}</Text>
+          </View>
+          {selectedSlot && (
+            <View className="flex-row justify-between mb-2">
+              <Text className="text-gray-600">Time Slot</Text>
+              <Text className="text-gray-800">{selectedSlot}</Text>
+            </View>
+          )}
+          <View className="border-t border-gray-200 mt-3 pt-3">
+            <View className="flex-row justify-between">
+              <Text className="text-lg font-semibold">Total</Text>
+              <Text className="text-lg font-semibold">Rs.{doctor.fee}</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Confirm Button */}
+        <Pressable
+          onPress={confirmBooking}
+          disabled={isLoading || !selectedSlot}
+          className={`p-4 rounded-lg ${
+            isLoading || !selectedSlot ? 'bg-blue-300' : 'bg-green-600'
+          }`}
+        >
+          <View className="flex-row justify-center items-center">
+            {isLoading && <ActivityIndicator color="white" size="small" className="mr-2" />}
+            <Text className="text-white text-center text-xl font-semibold">
+              {isLoading ? 'Booking...' : `Confirm Booking`}
+            </Text>
+          </View>
+        </Pressable>
+
+        {!selectedSlot && (
+          <Text className="text-red-500 text-center mt-2">
+            Please select a time slot to continue
+          </Text>
+        )}
+      </View>
+    </ScrollView>
   )
 }

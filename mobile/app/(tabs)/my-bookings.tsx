@@ -17,6 +17,8 @@ type Booking = {
     name: string;
     age: string;
     contact: string;
+    appointmentDate:string;
+    
   };
   createdAt: string;
 };
@@ -94,13 +96,17 @@ export default function MyBookings() {
         <View className="border-t border-gray-100 mt-2 pt-2">
           <View className="flex-row items-center mb-1">
             <FontAwesome name="calendar" size={14} color="#64748b" />
+            <Text className="text-gray-600 ml-2">  Date: {new Date(booking.patient.appointmentDate).toLocaleDateString()}</Text>
+          </View>
+          <View className="flex-row items-center mb-1">
+            <FontAwesome name="clock-o" size={14} color="#64748b" />
             <Text className="text-gray-600 ml-2">{booking.slot}</Text>
           </View>
           <View className="flex-row items-center">
             <FontAwesome name="user" size={14} color="#64748b" />
             <Text className="text-gray-600 ml-2">{booking.patient.name}</Text>
           </View>
-        </View>
+        </View>  
 
         <View className="flex-row justify-between items-center mt-3 pt-2 border-t border-gray-100">
           <Text className="text-gray-600">#{booking.bookingNumber}</Text>
