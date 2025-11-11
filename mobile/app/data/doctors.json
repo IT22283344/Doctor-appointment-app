@@ -1,0 +1,46 @@
+[
+  {
+    "id": "doc1",
+    "name": "Dr. Ayesha Fernando",
+    "specialization": "General Physician",
+    "fee": 1500,
+    "experience": "15 years",
+    "rating": 4.8,
+    "about": "Specialized in family medicine with focus on preventive care",
+    "slots": {
+      "09:00": { "capacity": 3, "available": 3 },
+      "09:30": { "capacity": 3, "available": 3 },
+      "10:00": { "capacity": 3, "available": 3 },
+      "11:00": { "capacity": 3, "available": 3 }
+    }
+  },
+  {
+    "id": "doc2",
+    "name": "Dr. Sanjay Perera",
+    "specialization": "Pediatrics",
+    "fee": 2000,
+    "experience": "12 years",
+    "rating": 4.9,
+    "about": "Expert in child healthcare and development",
+    "slots": {
+      "10:00": { "capacity": 2, "available": 2 },
+      "10:30": { "capacity": 2, "available": 2 },
+      "11:30": { "capacity": 2, "available": 2 },
+      "14:00": { "capacity": 2, "available": 2 }
+    }
+  },
+  {
+    "id": "doc3",
+    "name": "Dr. Nirmala Silva",
+    "specialization": "Cardiology",
+    "fee": 2500,
+    "experience": "20 years",
+    "rating": 4.7,
+    "about": "Specializes in cardiovascular health and treatment",
+    "slots": {
+      "13:00": { "capacity": 2, "available": 2 },
+      "13:30": { "capacity": 2, "available": 2 },
+      "15:00": { "capacity": 2, "available": 2 }
+    }
+  }
+]
