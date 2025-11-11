@@ -6,12 +6,18 @@
     "fee": 1500,
     "experience": "15 years",
     "rating": 4.8,
-    "about": "Specialized in family medicine with focus on preventive care",
+    "reviews": 127,
+    "about": "Specialized in family medicine with focus on preventive care and chronic disease management. Passionate about patient education.",
+    "education": "MBBS, MD in General Medicine",
+    "languages": ["English", "Sinhala", "Tamil"],
     "slots": {
-      "09:00": { "capacity": 3, "available": 3 },
-      "09:30": { "capacity": 3, "available": 3 },
-      "10:00": { "capacity": 3, "available": 3 },
-      "11:00": { "capacity": 3, "available": 3 }
+      "08:00 AM": { "capacity": 3, "available": 3 },
+      "08:30 AM": { "capacity": 3, "available": 3 },
+      "09:00 AM": { "capacity": 3, "available": 3 },
+      "10:30 AM": { "capacity": 3, "available": 3 },
+      "02:00 PM": { "capacity": 3, "available": 3 },
+      "03:00 PM": { "capacity": 3, "available": 3 },
+      "04:00 PM": { "capacity": 3, "available": 3 }
     }
   },
   {
@@ -21,12 +27,17 @@
     "fee": 2000,
     "experience": "12 years",
     "rating": 4.9,
-    "about": "Expert in child healthcare and development",
+    "reviews": 89,
+    "about": "Expert in child healthcare and development. Special interest in vaccination and childhood nutrition.",
+    "education": "MBBS, DCH, MD Pediatrics",
+    "languages": ["English", "Sinhala"],
     "slots": {
-      "10:00": { "capacity": 2, "available": 2 },
-      "10:30": { "capacity": 2, "available": 2 },
-      "11:30": { "capacity": 2, "available": 2 },
-      "14:00": { "capacity": 2, "available": 2 }
+      "09:00 AM": { "capacity": 2, "available": 2 },
+      "10:00 AM": { "capacity": 2, "available": 2 },
+      "11:00 AM": { "capacity": 2, "available": 2 },
+      "02:00 PM": { "capacity": 2, "available": 2 },
+      "03:30 PM": { "capacity": 2, "available": 2 },
+      "04:30 PM": { "capacity": 2, "available": 2 }
     }
   },
   {
@@ -36,11 +47,378 @@
     "fee": 2500,
     "experience": "20 years",
     "rating": 4.7,
-    "about": "Specializes in cardiovascular health and treatment",
+    "reviews": 156,
+    "about": "Senior cardiologist specializing in cardiovascular health, heart disease prevention, and interventional procedures.",
+    "education": "MBBS, MD, DM Cardiology",
+    "languages": ["English", "Sinhala", "Tamil"],
     "slots": {
-      "13:00": { "capacity": 2, "available": 2 },
-      "13:30": { "capacity": 2, "available": 2 },
-      "15:00": { "capacity": 2, "available": 2 }
+      "10:00 AM": { "capacity": 2, "available": 2 },
+      "11:30 AM": { "capacity": 2, "available": 2 },
+      "02:00 PM": { "capacity": 2, "available": 2 },
+      "03:00 PM": { "capacity": 2, "available": 2 },
+      "04:30 PM": { "capacity": 2, "available": 2 }
+    }
+  },
+  {
+    "id": "doc4",
+    "name": "Dr. Kamal Gunawardena",
+    "specialization": "Dermatology",
+    "fee": 1800,
+    "experience": "10 years",
+    "rating": 4.6,
+    "reviews": 94,
+    "about": "Expert in skin conditions, cosmetic dermatology, and laser treatments. Focus on evidence-based skincare.",
+    "education": "MBBS, MD Dermatology",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "09:00 AM": { "capacity": 3, "available": 3 },
+      "10:30 AM": { "capacity": 3, "available": 3 },
+      "12:00 PM": { "capacity": 3, "available": 3 },
+      "02:30 PM": { "capacity": 3, "available": 3 },
+      "04:00 PM": { "capacity": 3, "available": 3 }
+    }
+  },
+  {
+    "id": "doc5",
+    "name": "Dr. Priyanthi Jayawardena",
+    "specialization": "Gynecology",
+    "fee": 2200,
+    "experience": "18 years",
+    "rating": 4.9,
+    "reviews": 203,
+    "about": "Specialized in women's health, reproductive care, and minimally invasive gynecological surgeries.",
+    "education": "MBBS, MD Obstetrics & Gynecology",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "08:30 AM": { "capacity": 2, "available": 2 },
+      "10:00 AM": { "capacity": 2, "available": 2 },
+      "11:30 AM": { "capacity": 2, "available": 2 },
+      "02:00 PM": { "capacity": 2, "available": 2 },
+      "03:30 PM": { "capacity": 2, "available": 2 },
+      "05:00 PM": { "capacity": 2, "available": 2 }
+    }
+  },
+  {
+    "id": "doc6",
+    "name": "Dr. Roshan Mendis",
+    "specialization": "Orthopedics",
+    "fee": 2800,
+    "experience": "16 years",
+    "rating": 4.7,
+    "reviews": 178,
+    "about": "Bone and joint specialist with expertise in sports injuries, joint replacements, and arthroscopic surgeries.",
+    "education": "MBBS, MS Orthopedics",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "09:30 AM": { "capacity": 2, "available": 2 },
+      "11:00 AM": { "capacity": 2, "available": 2 },
+      "01:30 PM": { "capacity": 2, "available": 2 },
+      "03:00 PM": { "capacity": 2, "available": 2 },
+      "04:30 PM": { "capacity": 2, "available": 2 }
+    }
+  },
+  {
+    "id": "doc7",
+    "name": "Dr. Anoma Bandara",
+    "specialization": "Psychiatry",
+    "fee": 3000,
+    "experience": "14 years",
+    "rating": 4.8,
+    "reviews": 67,
+    "about": "Mental health specialist providing therapy, counseling, and medication management for various psychological conditions.",
+    "education": "MBBS, MD Psychiatry",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "10:00 AM": { "capacity": 1, "available": 1 },
+      "11:30 AM": { "capacity": 1, "available": 1 },
+      "02:00 PM": { "capacity": 1, "available": 1 },
+      "03:30 PM": { "capacity": 1, "available": 1 },
+      "05:00 PM": { "capacity": 1, "available": 1 }
+    }
+  },
+  {
+    "id": "doc8",
+    "name": "Dr. Sameera Wickramasinghe",
+    "specialization": "Dentistry",
+    "fee": 1200,
+    "experience": "8 years",
+    "rating": 4.5,
+    "reviews": 112,
+    "about": "General dentistry specialist focusing on oral health, cosmetic dentistry, and preventive dental care.",
+    "education": "BDS, MDS Conservative Dentistry",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "08:00 AM": { "capacity": 4, "available": 4 },
+      "09:00 AM": { "capacity": 4, "available": 4 },
+      "10:00 AM": { "capacity": 4, "available": 4 },
+      "11:00 AM": { "capacity": 4, "available": 4 },
+      "02:00 PM": { "capacity": 4, "available": 4 },
+      "03:00 PM": { "capacity": 4, "available": 4 },
+      "04:00 PM": { "capacity": 4, "available": 4 }
+    }
+  },
+  {
+    "id": "doc9",
+    "name": "Dr. Dinesh Ratnayake",
+    "specialization": "Neurology",
+    "fee": 3500,
+    "experience": "22 years",
+    "rating": 4.9,
+    "reviews": 134,
+    "about": "Expert in brain and nervous system disorders, epilepsy, stroke management, and neurodegenerative diseases.",
+    "education": "MBBS, MD, DM Neurology",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "09:00 AM": { "capacity": 1, "available": 1 },
+      "11:00 AM": { "capacity": 1, "available": 1 },
+      "02:00 PM": { "capacity": 1, "available": 1 },
+      "04:00 PM": { "capacity": 1, "available": 1 }
+    }
+  },
+  {
+    "id": "doc10",
+    "name": "Dr. Chathuri Alwis",
+    "specialization": "Ophthalmology",
+    "fee": 1900,
+    "experience": "11 years",
+    "rating": 4.6,
+    "reviews": 98,
+    "about": "Eye care specialist with expertise in cataract surgery, retinal diseases, and vision correction procedures.",
+    "education": "MBBS, MS Ophthalmology",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "08:30 AM": { "capacity": 3, "available": 3 },
+      "10:00 AM": { "capacity": 3, "available": 3 },
+      "11:30 AM": { "capacity": 3, "available": 3 },
+      "02:30 PM": { "capacity": 3, "available": 3 },
+      "04:00 PM": { "capacity": 3, "available": 3 }
+    }
+  },
+  {
+    "id": "doc11",
+    "name": "Dr. Mahesh Kumar",
+    "specialization": "ENT Specialist",
+    "fee": 1700,
+    "experience": "13 years",
+    "rating": 4.7,
+    "reviews": 87,
+    "about": "Ear, Nose and Throat specialist with experience in endoscopic surgeries and hearing disorders.",
+    "education": "MBBS, MS ENT",
+    "languages": ["English", "Sinhala", "Tamil"],
+    "slots": {
+      "09:00 AM": { "capacity": 3, "available": 3 },
+      "10:30 AM": { "capacity": 3, "available": 3 },
+      "01:00 PM": { "capacity": 3, "available": 3 },
+      "03:00 PM": { "capacity": 3, "available": 3 },
+      "04:30 PM": { "capacity": 3, "available": 3 }
+    }
+  },
+  {
+    "id": "doc12",
+    "name": "Dr. Nilushi Fernando",
+    "specialization": "Physiotherapy",
+    "fee": 1000,
+    "experience": "9 years",
+    "rating": 4.8,
+    "reviews": 156,
+    "about": "Rehabilitation and physical therapy specialist focusing on pain management and mobility restoration.",
+    "education": "BPT, MPT Orthopedics",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "08:00 AM": { "capacity": 4, "available": 4 },
+      "09:30 AM": { "capacity": 4, "available": 4 },
+      "11:00 AM": { "capacity": 4, "available": 4 },
+      "02:00 PM": { "capacity": 4, "available": 4 },
+      "03:30 PM": { "capacity": 4, "available": 4 },
+      "05:00 PM": { "capacity": 4, "available": 4 }
+    }
+  },
+  {
+    "id": "doc13",
+    "name": "Dr. Rajiv Sharma",
+    "specialization": "Gastroenterology",
+    "fee": 3200,
+    "experience": "17 years",
+    "rating": 4.8,
+    "reviews": 92,
+    "about": "Digestive system specialist with expertise in endoscopy, liver diseases, and gastrointestinal disorders.",
+    "education": "MBBS, MD, DM Gastroenterology",
+    "languages": ["English", "Hindi", "Sinhala"],
+    "slots": {
+      "09:30 AM": { "capacity": 2, "available": 2 },
+      "11:00 AM": { "capacity": 2, "available": 2 },
+      "02:30 PM": { "capacity": 2, "available": 2 },
+      "04:00 PM": { "capacity": 2, "available": 2 }
+    }
+  },
+  {
+    "id": "doc14",
+    "name": "Dr. Lakshmi Weerasinghe",
+    "specialization": "Endocrinology",
+    "fee": 2400,
+    "experience": "14 years",
+    "rating": 4.7,
+    "reviews": 78,
+    "about": "Hormone disorder specialist focusing on diabetes, thyroid disorders, and metabolic conditions.",
+    "education": "MBBS, MD, DM Endocrinology",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "10:00 AM": { "capacity": 2, "available": 2 },
+      "11:30 AM": { "capacity": 2, "available": 2 },
+      "02:00 PM": { "capacity": 2, "available": 2 },
+      "03:30 PM": { "capacity": 2, "available": 2 }
+    }
+  },
+  {
+    "id": "doc15",
+    "name": "Dr. Asiri Fernando",
+    "specialization": "Urology",
+    "fee": 2900,
+    "experience": "19 years",
+    "rating": 4.6,
+    "reviews": 103,
+    "about": "Urinary system and male reproductive health specialist with expertise in minimally invasive surgeries.",
+    "education": "MBBS, MS, MCh Urology",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "09:00 AM": { "capacity": 2, "available": 2 },
+      "10:30 AM": { "capacity": 2, "available": 2 },
+      "01:30 PM": { "capacity": 2, "available": 2 },
+      "03:00 PM": { "capacity": 2, "available": 2 },
+      "04:30 PM": { "capacity": 2, "available": 2 }
+    }
+  },
+  {
+    "id": "doc16",
+    "name": "Dr. Nadeesha Perera",
+    "specialization": "Rheumatology",
+    "fee": 2600,
+    "experience": "12 years",
+    "rating": 4.5,
+    "reviews": 64,
+    "about": "Specialist in arthritis, autoimmune diseases, and musculoskeletal disorders affecting joints and bones.",
+    "education": "MBBS, MD, DM Rheumatology",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "10:00 AM": { "capacity": 2, "available": 2 },
+      "11:30 AM": { "capacity": 2, "available": 2 },
+      "02:00 PM": { "capacity": 2, "available": 2 },
+      "03:30 PM": { "capacity": 2, "available": 2 }
+    }
+  },
+  {
+    "id": "doc17",
+    "name": "Dr. Ishan Rathnayake",
+    "specialization": "Pulmonology",
+    "fee": 2300,
+    "experience": "15 years",
+    "rating": 4.7,
+    "reviews": 88,
+    "about": "Respiratory system specialist focusing on asthma, COPD, lung diseases, and sleep disorders.",
+    "education": "MBBS, MD, DM Pulmonology",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "09:00 AM": { "capacity": 2, "available": 2 },
+      "10:30 AM": { "capacity": 2, "available": 2 },
+      "01:00 PM": { "capacity": 2, "available": 2 },
+      "02:30 PM": { "capacity": 2, "available": 2 },
+      "04:00 PM": { "capacity": 2, "available": 2 }
+    }
+  },
+  {
+    "id": "doc18",
+    "name": "Dr. Tharindi Silva",
+    "specialization": "Oncology",
+    "fee": 3800,
+    "experience": "21 years",
+    "rating": 4.9,
+    "reviews": 76,
+    "about": "Cancer specialist providing comprehensive cancer care, chemotherapy, and palliative care services.",
+    "education": "MBBS, MD, DM Oncology",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "10:00 AM": { "capacity": 1, "available": 1 },
+      "11:30 AM": { "capacity": 1, "available": 1 },
+      "02:00 PM": { "capacity": 1, "available": 1 },
+      "03:30 PM": { "capacity": 1, "available": 1 }
+    }
+  },
+  {
+    "id": "doc19",
+    "name": "Dr. Chamil Weerathunga",
+    "specialization": "Nephrology",
+    "fee": 2700,
+    "experience": "16 years",
+    "rating": 4.6,
+    "reviews": 69,
+    "about": "Kidney disease specialist with expertise in dialysis, kidney transplantation, and hypertension management.",
+    "education": "MBBS, MD, DM Nephrology",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "09:30 AM": { "capacity": 2, "available": 2 },
+      "11:00 AM": { "capacity": 2, "available": 2 },
+      "02:30 PM": { "capacity": 2, "available": 2 },
+      "04:00 PM": { "capacity": 2, "available": 2 }
+    }
+  },
+  {
+    "id": "doc20",
+    "name": "Dr. Sithara Jayasinghe",
+    "specialization": "Psychologist",
+    "fee": 1800,
+    "experience": "11 years",
+    "rating": 4.8,
+    "reviews": 142,
+    "about": "Clinical psychologist specializing in cognitive behavioral therapy, stress management, and mental wellness.",
+    "education": "PhD Psychology, MPhil Clinical Psychology",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "09:00 AM": { "capacity": 3, "available": 3 },
+      "10:30 AM": { "capacity": 3, "available": 3 },
+      "01:00 PM": { "capacity": 3, "available": 3 },
+      "02:30 PM": { "capacity": 3, "available": 3 },
+      "04:00 PM": { "capacity": 3, "available": 3 },
+      "05:30 PM": { "capacity": 3, "available": 3 }
+    }
+  },
+  {
+    "id": "doc21",
+    "name": "Dr. Rohan Karunaratne",
+    "specialization": "General Physician",
+    "fee": 1400,
+    "experience": "8 years",
+    "rating": 4.4,
+    "reviews": 56,
+    "about": "Comprehensive primary care physician with focus on preventive medicine and holistic patient care.",
+    "education": "MBBS, MD General Medicine",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "08:00 AM": { "capacity": 4, "available": 4 },
+      "09:00 AM": { "capacity": 4, "available": 4 },
+      "10:00 AM": { "capacity": 4, "available": 4 },
+      "11:00 AM": { "capacity": 4, "available": 4 },
+      "02:00 PM": { "capacity": 4, "available": 4 },
+      "03:00 PM": { "capacity": 4, "available": 4 },
+      "04:00 PM": { "capacity": 4, "available": 4 }
+    }
+  },
+  {
+    "id": "doc22",
+    "name": "Dr. Minoli Herath",
+    "specialization": "Pediatrics",
+    "fee": 1900,
+    "experience": "7 years",
+    "rating": 4.5,
+    "reviews": 43,
+    "about": "Pediatrician specializing in newborn care, growth monitoring, and childhood immunizations.",
+    "education": "MBBS, DCH Pediatrics",
+    "languages": ["English", "Sinhala"],
+    "slots": {
+      "08:30 AM": { "capacity": 3, "available": 3 },
+      "10:00 AM": { "capacity": 3, "available": 3 },
+      "11:30 AM": { "capacity": 3, "available": 3 },
+      "02:30 PM": { "capacity": 3, "available": 3 },
+      "04:00 PM": { "capacity": 3, "available": 3 }
     }
   }
 ]

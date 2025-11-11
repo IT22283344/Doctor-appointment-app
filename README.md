@@ -1,65 +1,51 @@
-# Doctor Appointment App
+🏥 HealthConnect - Doctor Appointment Booking App
 
-A mobile application for booking doctor appointments and managing healthcare visits.
+A modern, user-friendly mobile application built with React Native and Expo that allows users to book doctor appointments seamlessly. The app provides an intuitive interface for finding healthcare professionals, scheduling visits, and managing medical appointments.
 
-## Features
+https://img.shields.io/badge/HealthConnect-Healthcare%2520App-blue
+https://img.shields.io/badge/React%2520Native-0.72-blue
+https://img.shields.io/badge/Expo-49-orange
 
-- Onboarding flow for first-time users
-- View list of doctors and their available slots
-- Book appointments and save them locally
-- Generate PDF invoices for appointments
-- Authentication system for users
+📱 App Overview
+HealthConnect bridges the gap between patients and healthcare providers by offering a streamlined platform for booking medical appointments. With a focus on user experience and professional healthcare standards, our app makes healthcare accessible to everyone.
 
-## Setup & Installation
+✨ Key Features
+🔍 Smart Doctor Search - Find specialists by name, specialization, or filters
+📅 Easy Appointment Booking - Simple and intuitive booking process
+💰 Transparent Pricing - Clear consultation fees upfront
+🕒 Real-time Slot Availability - Live availability for appointments
+👤 User Profiles - Personalized experience for returning users
+📱 Mobile-First Design - Optimized for seamless mobile experience
+🔐 Secure Authentication - Expo SecureStore for local authentication
 
-1. Install dependencies:
-```bash
-cd mobile
-npm install
-expo install expo-secure-store @react-native-async-storage/async-storage expo-print expo-sharing
-```
 
-2. Start the backend server:
-```bash
-cd api
-# Create .env with MONGO_URL and JWT_SECRET
-npm install
-npm run dev
-```
+🛠 Technology Stack
+Frontend
+React Native - Cross-platform mobile framework
+Expo - Development platform and SDK
+TypeScript - Type-safe JavaScript
+Tailwind CSS - Utility-first styling with nativewind
+Expo Router - File-based navigation
 
-3. Start the Expo app:
-```bash
-cd mobile
-expo start
-```
 
-## App Flow
+Authentication & Storage
+AuthContext - Custom React Context for state management
+Expo SecureStore - Secure local storage for authentication tokens
+React Hooks - For state and lifecycle management
 
-1. First Launch:
-   - Users see Onboarding1 -> Onboarding2 screens
-   - After onboarding, directed to main menu
+UI & Icons
+FontAwesome - Icon library
+Material Icons - Additional icon set
+Custom Components - Reusable UI components
 
-2. Subsequent Launches:
-   - Main menu with "View Doctors" and "Sign In" options
-   - Authenticated users can book appointments
-   - Generate PDF invoices after booking
 
-## Project Structure
+📦 Installation & Setup
+Prerequisites
+Node.js (v16 or higher)
+npm or yarn
+Expo CLI
+Expo Go app (for physical device testing)
 
-```
-mobile/
-  app/
-    components/
-      Onboarding1.jsx    # First onboarding screen
-      Onboarding2.jsx    # Second onboarding screen
-      DoctorCard.tsx     # Doctor list item component
-    data/
-      doctors.json       # Static doctor data
-    index.tsx           # Main entry & menu
-    doctors.tsx         # Doctor listing
-    booking.tsx         # Appointment booking
-    invoice.tsx         # Invoice generation
-```
 
 ## Important Notes
 

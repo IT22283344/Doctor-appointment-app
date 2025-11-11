@@ -64,7 +64,7 @@ export default function Doctors() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View className="flex-1 bg-gray-50">
-        <View className="px-4 pt-6 pb-4 bg-white">
+        <View className="px-4 pt-6 pb-2 bg-white">
           <Text className="text-2xl font-bold text-gray-900 mb-4">Find Doctors</Text>
           
           {/* Search Bar */}
@@ -160,6 +160,106 @@ export default function Doctors() {
                 </Text>
               </Pressable>
             ))}
+          </ScrollView>
+        </View>
+
+        {/* New Specialization Filter with Icons */}
+        <View className="bg-white px-4 py-3 border-b border-gray-200">
+          <Text className="text-gray-700 mb-3 font-medium">Browse by Category</Text>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingRight: 16 }}
+          >
+            <Pressable
+              onPress={() => handleSpecializationPress(null)}
+              className={`flex items-center px-4 py-3 rounded-xl mr-3 ${
+                !selectedSpecialization ? 'bg-blue-50 border-2 border-blue-500' : 'bg-gray-50 border border-gray-200'
+              }`}
+            >
+              <FontAwesome 
+                name="heart" 
+                size={20} 
+                color={!selectedSpecialization ? '#3B82F6' : '#6B7280'} 
+              />
+              <Text className={`mt-2 text-sm ${
+                !selectedSpecialization ? 'text-blue-600 font-semibold' : 'text-gray-600'
+              }`}>
+                All Doctors
+              </Text>
+            </Pressable>
+            
+            <Pressable
+              onPress={() => handleSpecializationPress('Cardiology')}
+              className={`flex items-center px-4 py-3 rounded-xl mr-3 ${
+                selectedSpecialization === 'Cardiology' ? 'bg-red-50 border-2 border-red-500' : 'bg-gray-50 border border-gray-200'
+              }`}
+            >
+              <FontAwesome 
+                name="heartbeat" 
+                size={20} 
+                color={selectedSpecialization === 'Cardiology' ? '#EF4444' : '#6B7280'} 
+              />
+              <Text className={`mt-2 text-sm ${
+                selectedSpecialization === 'Cardiology' ? 'text-red-600 font-semibold' : 'text-gray-600'
+              }`}>
+                Cardiology
+              </Text>
+            </Pressable>
+            
+            <Pressable
+              onPress={() => handleSpecializationPress('Pediatrics')}
+              className={`flex items-center px-4 py-3 rounded-xl mr-3 ${
+                selectedSpecialization === 'Pediatrics' ? 'bg-green-50 border-2 border-green-500' : 'bg-gray-50 border border-gray-200'
+              }`}
+            >
+              <FontAwesome 
+                name="child" 
+                size={20} 
+                color={selectedSpecialization === 'Pediatrics' ? '#10B981' : '#6B7280'} 
+              />
+              <Text className={`mt-2 text-sm ${
+                selectedSpecialization === 'Pediatrics' ? 'text-green-600 font-semibold' : 'text-gray-600'
+              }`}>
+                Pediatrics
+              </Text>
+            </Pressable>
+            
+            <Pressable
+              onPress={() => handleSpecializationPress('Dermatology')}
+              className={`flex items-center px-4 py-3 rounded-xl mr-3 ${
+                selectedSpecialization === 'Dermatology' ? 'bg-purple-50 border-2 border-purple-500' : 'bg-gray-50 border border-gray-200'
+              }`}
+            >
+              <FontAwesome 
+                name="user-md" 
+                size={20} 
+                color={selectedSpecialization === 'Dermatology' ? '#8B5CF6' : '#6B7280'} 
+              />
+              <Text className={`mt-2 text-sm ${
+                selectedSpecialization === 'Dermatology' ? 'text-purple-600 font-semibold' : 'text-gray-600'
+              }`}>
+                Dermatology
+              </Text>
+            </Pressable>
+            
+            <Pressable
+              onPress={() => handleSpecializationPress('Orthopedics')}
+              className={`flex items-center px-4 py-3 rounded-xl mr-3 ${
+                selectedSpecialization === 'Orthopedics' ? 'bg-yellow-50 border-2 border-yellow-500' : 'bg-gray-50 border border-gray-200'
+              }`}
+            >
+              <FontAwesome 
+                name="medkit" 
+                size={20} 
+                color={selectedSpecialization === 'Orthopedics' ? '#F59E0B' : '#6B7280'} 
+              />
+              <Text className={`mt-2 text-sm ${
+                selectedSpecialization === 'Orthopedics' ? 'text-yellow-600 font-semibold' : 'text-gray-600'
+              }`}>
+                Orthopedics
+              </Text>
+            </Pressable>
           </ScrollView>
         </View>
 
