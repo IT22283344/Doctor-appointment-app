@@ -53,7 +53,7 @@ export default function HomeScreen() {
       text: "24/7 Available",
     },
     {
-      icon: "s",
+      icon: "shield-alt",
       text: "Secure & Private",
     },
     {
